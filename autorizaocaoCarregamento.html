@@ -23,22 +23,22 @@
           <div class="modal-body">
             <form id="formSol">
               <div class="mb-3">
-                <label for="codigoCli" class="form-label" required>Cliente</label>
-                <input type="email" class="form-control" id="codigoCli">
+                <label for="codigoCli" class="form-label" >Cliente</label>
+                <input class="form-control" id="codigoCli" required>
               </div>
               <div class="mb-3">
                 <label for="cpfMotorista" class="form-label">CPF Motorista</label>
-                <input type="email" class="form-control" id="cpfMotorista" aria-describedby="cpfHelp" required>
+                <input class="form-control" id="cpfMotorista" aria-describedby="cpfHelp" required>
                 <div id="cpfHelp" class="form-text">Informe o CPF do motorista</div>
               </div>
               <div class="mb-3">
                 <label for="placaDoVeiculo" class="form-label">Placa do Veículo</label>
-                <input type="password" class="form-control" id="placaDoVeiculo" aria-describedby="placaVeic" required>
+                <input class="form-control" id="placaDoVeiculo" aria-describedby="placaVeic" required>
                 <div id="placaVeic" class="form-text">Informe a placa do veículo</div>
               </div>
               <div class="mb-3">
                 <label for="cpfCnpjTransportadora" class="form-label" >CPF/CNPJ Transportadora</label>
-                <input type="password" class="form-control" id="cpfCnpjTransportadora" aria-describedby="cpfTransp" required>
+                <input class="form-control" id="cpfCnpjTransportadora" aria-describedby="cpfTransp" required>
                 <div id="cpfTransp" class="form-text">Informe cpf ou cnpj da transportadora</div>
               </div>
           </div>
@@ -75,7 +75,7 @@
 </html>  
 
 <script>
-  console.log("commit 22");
+  console.log("commit 23");
 
   $("#abrirModalCadastrarSol").click(function () {
     $("#modalCadastrarSol").modal('show');
