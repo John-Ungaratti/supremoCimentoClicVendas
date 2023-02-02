@@ -71,26 +71,26 @@
   
 
 
-  <script>
-    console.log("commit 20");
-
-  	$("#abrirModalCadastrarSol").click(function () {
-		  $("#modalCadastrarSol").modal('show');
-	  });
-
-    $("#enviaSol").click(function () {
-      var formulario = document.getElementById("formSol");
-      if (!formulario.checkValidity()) {
-      }
-      else{
-        formulario.addEventListener('submit', function (e) {
-				e.preventDefault();
-			});
-        console.log("passou");
-      }
-    });
-
-  </script>
 
 </html>  
 
+<script>
+  console.log("commit 21");
+
+  $("#abrirModalCadastrarSol").click(function () {
+    $("#modalCadastrarSol").modal('show');
+  });
+
+  $("#enviaSol").click(function () {
+    var formulario = document.getElementById("formSol");
+    if (!formulario.checkValidity()) {
+    }
+    else{
+      formulario.addEventListener('submit', function (e) {
+      e.preventDefault();
+    });
+      console.log("passou");
+    }
+  });
+
+</script>
