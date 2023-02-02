@@ -12,7 +12,7 @@
         <button id="abrirModalCadastrarSol" type="button" class="btn btn-light">Cadastrar nova solicitação</button>
     </div>   
 
-    <div class="modal" tabindex="-1">
+    <div id="modalCadastrarSol" class="modal" tabindex="-1">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -36,7 +36,12 @@
 
 
   <script>
-    console.log("commit 1");
+    console.log("commit 2");
+
+  	$("#abrirModalCadastrarSol").click(function () {
+		$("#modalCadastrarSol").modal('show');
+	});
+    
   </script>
 
 </html>  
