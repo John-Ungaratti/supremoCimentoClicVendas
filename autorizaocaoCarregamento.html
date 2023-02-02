@@ -23,6 +23,11 @@
           <div class="modal-body">
             <form>
               <div class="mb-3">
+                <label for="codigoCli" class="form-label">Cliente</label>
+                <input type="email" class="form-control" id="codigoCli" aria-describedby="cpfHelp">
+                <div id="cpfHelp" class="form-text">Informe o CPF do motorista</div>
+              </div>
+              <div class="mb-3">
                 <label for="cpfMotorista" class="form-label">CPF Motorista</label>
                 <input type="email" class="form-control" id="cpfMotorista" aria-describedby="cpfHelp">
                 <div id="cpfHelp" class="form-text">Informe o CPF do motorista</div>
@@ -52,7 +57,7 @@
 
 
   <script>
-    console.log("commit 8");
+    console.log("commit 9");
 
   	$("#abrirModalCadastrarSol").click(function () {
 		$("#modalCadastrarSol").modal('show');
