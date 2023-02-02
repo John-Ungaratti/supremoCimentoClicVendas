@@ -83,6 +83,9 @@
       if (!formulario.checkValidity()) {
       }
       else{
+        formulario.addEventListener('submit', function (e) {
+				e.preventDefault();
+			});
         console.log("passou");
       }
     });
