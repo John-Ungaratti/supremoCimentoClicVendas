@@ -57,7 +57,7 @@
     <table class="table">
       <thead>
         <tr>
-          <th scope="col">n° Autorização</th>
+          <th scope="col">N° Autorização</th>
           <th scope="col">Situação</th>
           <th scope="col">Cliente</th>
           <th scope="col">Placa do Veículo</th>
@@ -80,7 +80,7 @@
 
   var linhaAut;
   
-  console.log("commit 29");
+  console.log("commit 30");
 
   var json = [{"numeroAut":"123456","cliente":"02 - ABCDEF","motorista":"106.288.222-23","veiculo":"abc-1234","transportadora":"42.077.441/0001-31"}];
 
@@ -105,11 +105,11 @@
     json.map(({ numeroAut, cliente, motorista, veiculo, transportadora }) => {
 
       linhaAut =  `<tr>
-											 <th class="col"scope="row">${numeroAut}</th>
-											 <td class="col"></td>
-											 <td class="col">${cliente}</td>
-											 <td class="col">${veiculo}</td>
-											 <td class="col">${transportadora}</td>
+											 <thscope="row">${numeroAut}</th>
+											 <td></td>
+											 <td>${cliente}</td>
+											 <td>${veiculo}</td>
+											 <td>${transportadora}</td>
 											</tr>`;
       
      });
