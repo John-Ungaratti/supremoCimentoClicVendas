@@ -23,6 +23,11 @@
           <div class="modal-body">
             <form id="formSol">
               <div class="mb-3">
+                <label for="cliente" class="form-label">Cliente</label>
+                <input class="form-control" id="cliente" aria-describedby="clienteHelp" required>
+                <div id="clienteHelp" class="form-text">Informe o Cliente</div>
+              </div>
+              <div class="mb-3">
                 <label for="cpfMotorista" class="form-label">CPF Motorista</label>
                 <input class="form-control" id="cpfMotorista" aria-describedby="cpfHelp" required>
                 <div id="cpfHelp" class="form-text">Informe o CPF do motorista</div>
@@ -72,10 +77,12 @@
 </html>  
 
 <script>
-  
-  console.log("commit 26");
 
-  var json = [{"motorista":"106.222.555-78", "placa": "abc-1234", "transportadora": "106.222.888-43"}];
+  var linhaAut;
+  
+  console.log("commit 27");
+
+  var json = [{"numeroAut":"123456","cliente":"02 - ABCDEF","motorista":"106.288.222-23","veiculo":"abc-1234","transportadora":"42.077.441/0001-31"}];
 
   $("#abrirModalCadastrarSol").click(function () {
     $("#modalCadastrarSol").modal('show');
@@ -95,10 +102,19 @@
   });
 
   window.addEventListener("load", function populaValorTabelaAutorizacao() {
-    json.map(({ motorista, placa, transportadora }) => {
+    json.map(({ numeroAut, cliente, motorista, veiculo, transportadora }) => {
+
+      linhaAut =  `<tr style="text-align: center">
+											 <th class="col-md-1" style="font-weight: 400;" scope="row">${numeroAut}</th>
+											 <td class="col-md-1">${situacao}</td>
+											 <td class="col-md-2">${cliente}</td>
+											 <td class="col-md-1">${veiculo}</td>
+											 <td class="col-md-1">${transportadora}</td>
+											</tr>`;
       
-      console.log("motorista", motorista)
      });
+     document.getElementById("tbodyAutorizacao").innerHTML = linhaAut;
 	}, false);
+
 
 </script>
