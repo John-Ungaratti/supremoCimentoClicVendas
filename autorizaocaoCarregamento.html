@@ -80,7 +80,7 @@
 
   var linhaAut;
   
-  console.log("commit 28");
+  console.log("commit 29");
 
   var json = [{"numeroAut":"123456","cliente":"02 - ABCDEF","motorista":"106.288.222-23","veiculo":"abc-1234","transportadora":"42.077.441/0001-31"}];
 
@@ -104,12 +104,12 @@
   window.addEventListener("load", function populaValorTabelaAutorizacao() {
     json.map(({ numeroAut, cliente, motorista, veiculo, transportadora }) => {
 
-      linhaAut =  `<tr style="text-align: center">
-											 <th class="col-md-1" style="font-weight: 400;" scope="row">${numeroAut}</th>
-											 <td class="col-md-1"></td>
-											 <td class="col-md-2">${cliente}</td>
-											 <td class="col-md-1">${veiculo}</td>
-											 <td class="col-md-1">${transportadora}</td>
+      linhaAut =  `<tr>
+											 <th class="col"scope="row">${numeroAut}</th>
+											 <td class="col"></td>
+											 <td class="col">${cliente}</td>
+											 <td class="col">${veiculo}</td>
+											 <td class="col">${transportadora}</td>
 											</tr>`;
       
      });
