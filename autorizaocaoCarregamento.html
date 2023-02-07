@@ -89,7 +89,7 @@
 
   var linhaAut = "";
 
-  console.log("commit 58");
+  console.log("commit 59");
 
   var json = [{ "id": 1, "numeroAut": "123456", "cliente": "02 - ABCDEF", "motorista": "106.288.222-23", "veiculo": "ABC-1234", "transportadora": "42.077.441/0001-31", "situacao": "Aguardando Aprovação" }, { "id": 2, "numeroAut": "7891011", "cliente": "01 - GHIJK", "motorista": "106.222.111-22", "veiculo": "DEF-5678", "transportadora": "43.315.180/0001-03", "situacao": "Aprovado" }, { "id": 3, "numeroAut": "121314", "cliente": "03 - LMNOPQ", "motorista": "106.111.222-11", "veiculo": "GHI-1011", "transportadora": "87.065.637/0001-44", "situacao": "Rejeitado" }, { "id": 4, "numeroAut": "151617", "cliente": "05 - RSTUVW", "motorista": "111.444.555-43", "veiculo": "JKL-1213", "transportadora": "78.852.365/0001-31", "situacao": "Cancelado" }];
 
@@ -98,7 +98,7 @@
   onKeyPress : function(cpfcnpj, e, field, options) {
     const mascaras = ['000.000.000-000', '00.000.000/0000-00'];
     const mascara = (cpfcnpj.length > 14) ? mascaras[1] : mascaras[0];
-    $('#cpfCnpjTransportadora').mascara(mascara, options);
+    $('#cpfCnpjTransportadora').mask(mascara, options);
   }
 });
 
