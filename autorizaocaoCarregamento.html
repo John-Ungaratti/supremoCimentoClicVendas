@@ -155,14 +155,14 @@
   window.addEventListener("load", function populaValorTabelaAutorizacao() {
 
     var parametros = {
-          	idCvtccnpj	: dadosUserLogado().cId, 
+          	idCvtccnpj	: dadosUserLogadoPersonalizado().cId, 
 						numreg: 751, 
 						pRotina: "lerAutorizacoes", 
 						pCodCli: parent.dadosUserLogadoPersonalizado().rId,
 					 };
 						  
 			$.ajax({
-            url: dadosUserLogado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
+            url: dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
             type: "POST",
             data: JSON.stringify(parametros),
             success: function (response) {
