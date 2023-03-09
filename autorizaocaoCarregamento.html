@@ -152,19 +152,26 @@
   });
 
   //Requisição para regra 751 para listar solicitações
+
+  
+
+
+
+
   window.addEventListener("load", function populaValorTabelaAutorizacao() {
 
-    console.log("commit 1");
+    console.log("commit 2");
+
 
     var parametros = {
-          	idCvtccnpj	: dadosUserLogadoPersonalizado().cId, 
+          	idCvtccnpj	: parent.dadosUserLogadoPersonalizado().cId, 
 						numreg: 751, 
 						pRotina: "lerAutorizacoes", 
 						pCodCli: parent.dadosUserLogadoPersonalizado().rId,
 					 };
 						  
 			$.ajax({
-            url: dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
+            url: parent.dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
             type: "POST",
             data: JSON.stringify(parametros),
             success: function (response) {
@@ -172,39 +179,37 @@
             },
         });
 
+    // json.map(({ id, numeroAut, cliente, motorista, veiculo, transportadora, situacao }) => {
 
-
-    json.map(({ id, numeroAut, cliente, motorista, veiculo, transportadora, situacao }) => {
-
-      if(situacao == "Cancelado"){
-        linhaAut += `<tr id="linha${id}">
-                      <th>${numeroAut}</th>
-                      <td>${situacao}</td>
-                      <td>${cliente}</td>
-                      <td>${veiculo}</td>
-                      <td>${transportadora}</td>
-                      <td style="text-align: center;">
-                      </td>
-                    </tr>`;
-      }
-      else{
-        linhaAut += `<tr id="linha${id}">
-                      <th>${numeroAut}</th>
-                      <td>${situacao}</td>
-                      <td>${cliente}</td>
-                      <td>${veiculo}</td>
-                      <td>${transportadora}</td>
-                      <td style="text-align: center;">
-                      <span type=button onclick="editarAut(${numeroAut})"><i class="bi bi-pencil-square"></i></span>
-                      <span type=button onclick="abrirModalCancelar()"><i class="bi bi-x-lg"></i></span>
-                      </td>
-                    </tr>`;
-      }
+    //   if(situacao == "Cancelado"){
+    //     linhaAut += `<tr id="linha${id}">
+    //                   <th>${numeroAut}</th>
+    //                   <td>${situacao}</td>
+    //                   <td>${cliente}</td>
+    //                   <td>${veiculo}</td>
+    //                   <td>${transportadora}</td>
+    //                   <td style="text-align: center;">
+    //                   </td>
+    //                 </tr>`;
+    //   }
+    //   else{
+    //     linhaAut += `<tr id="linha${id}">
+    //                   <th>${numeroAut}</th>
+    //                   <td>${situacao}</td>
+    //                   <td>${cliente}</td>
+    //                   <td>${veiculo}</td>
+    //                   <td>${transportadora}</td>
+    //                   <td style="text-align: center;">
+    //                   <span type=button onclick="editarAut(${numeroAut})"><i class="bi bi-pencil-square"></i></span>
+    //                   <span type=button onclick="abrirModalCancelar()"><i class="bi bi-x-lg"></i></span>
+    //                   </td>
+    //                 </tr>`;
+    //   }
 
      
-    });
+    // });
 
-    document.getElementById("tbodyAutorizacao").innerHTML = linhaAut;
+    // document.getElementById("tbodyAutorizacao").innerHTML = linhaAut;
   }, false);
 
 
