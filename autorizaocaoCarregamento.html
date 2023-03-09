@@ -154,24 +154,19 @@
   //Requisição para regra 751 para listar solicitações
 
   
-
-
-
-
   window.addEventListener("load", function populaValorTabelaAutorizacao() {
 
     console.log("commit 2");
 
-
     var parametros = {
-          	idCvtccnpj	: parent.dadosUserLogadoPersonalizado().cId, 
+          	idCvtccnpj	: parent.dadosUserLogado().cId, 
 						numreg: 751, 
 						pRotina: "lerAutorizacoes", 
-						pCodCli: parent.dadosUserLogadoPersonalizado().rId,
+						pCodCli: parent.dadosUserLogado().rId,
 					 };
 						  
 			$.ajax({
-            url: parent.dadosUserLogadoPersonalizado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
+            url: parent.dadosUserLogado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
             type: "POST",
             data: JSON.stringify(parametros),
             success: function (response) {
