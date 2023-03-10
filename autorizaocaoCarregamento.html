@@ -133,7 +133,7 @@
 
   window.addEventListener("load", function populaValorTabelaAutorizacao() {
 
-    console.log("commit 14");
+    console.log("commit 15");
 
     var parametros = {
       idCvtccnpj: "53",
@@ -148,18 +148,20 @@
       data: JSON.stringify(parametros),
       success: function (response) {
         var json = JSON.parse(response);
-        json.json[0].map(({ cpfMotorista, numAut, placaVeiculo, situacao, transportadora }) => {
-          if (situacao == "Cancelado") {
-            linhaAut += `<tr id="linha${id}">
-                                <th>${numeroAut}</th>
-                                <td>${situacao}</td>
-                                <td>${cliente}</td>
-                                <td>${veiculo}</td>
-                                <td>${transportadora}</td>
-                                <td style="text-align: center;">
-                                </td>
-                              </tr>`;
-          }
+        json.json.map(({ cpfMotorista, numAut, placaVeiculo, situacao, transportadora }) => {
+
+          console.log(cpfMotorista);
+          // if (situacao == "Cancelado") {
+          //   linhaAut += `<tr id="linha${id}">
+          //                       <th>${numeroAut}</th>
+          //                       <td>${situacao}</td>
+          //                       <td>${cliente}</td>
+          //                       <td>${veiculo}</td>
+          //                       <td>${transportadora}</td>
+          //                       <td style="text-align: center;">
+          //                       </td>
+          //                     </tr>`;
+          // }
           
         });
       },
