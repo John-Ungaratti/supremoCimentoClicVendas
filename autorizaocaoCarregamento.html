@@ -133,7 +133,7 @@
 
   window.addEventListener("load", function populaValorTabelaAutorizacao() {
 
-    console.log("commit 16");
+    console.log("commit 17");
 
     var parametros = {
       idCvtccnpj: "53",
@@ -149,10 +149,8 @@
       success: function (response) {
         var json = JSON.parse(response);
         json.json.map(({ cpfMotorista, numAut, placaVeiculo, situacao, transportadora }) => {
-
-          console.log(cpfMotorista);
           if (situacao == "Cancelado") {
-            linhaAut += `<tr id="linha${id}">
+            linhaAut += `<tr id="linha">
                                 <th>${numeroAut}</th>
                                 <td>${situacao}</td>
                                 <td>${cliente}</td>
@@ -161,13 +159,11 @@
                                 <td style="text-align: center;">
                                 </td>
                               </tr>`;
-          }
-          
+          } 
+          document.getElementById("tbodyAutorizacao").innerHTML = linhaAut;
         });
       },
     });
-
-     document.getElementById("tbodyAutorizacao").innerHTML = linhaAut;
   }, false);
 
 
