@@ -130,7 +130,7 @@
   
   window.addEventListener("load", function populaValorTabelaAutorizacao() {
 
-    console.log("commit 12");
+    console.log("commit 13");
 
     var parametros = {
           	idCvtccnpj	: "53", 
@@ -144,7 +144,7 @@
             type: "POST",
             data: JSON.stringify(parametros),
             success: function (response) {
-              var json = JSON.encode(response);
+              var json = JSON.parse(response);
               console.log(json);
             },
         });
