@@ -130,7 +130,7 @@
   
   window.addEventListener("load", function populaValorTabelaAutorizacao() {
 
-    console.log("commit 7");
+    console.log("commit 8");
 
     var parametros = {
           	idCvtccnpj	: parent.dadosUserLogado().cId, 
@@ -198,6 +198,25 @@
       json = {"cpfMotorista": document.getElementById('cpfMotorista').value, "cpfCnpjTransportadora": document.getElementById('cpfCnpjTransportadora').value, "placaDoVeiculo": document.getElementById('placaDoVeiculo').value};
 
       console.log(json);
+
+      var parametros = {
+          	idCvtccnpj	: parent.dadosUserLogado().cId, 
+						numreg: 751, 
+						pRotina: "gravarAutorizacao", 
+						pCodCli: parent.dadosUserLogado().rId,
+            pJson: pJson
+					 };
+						  
+			$.ajax({
+            url: parent.dadosUserLogado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
+            type: "POST",
+            data: JSON.stringify(parametros),
+            success: function (response) {
+              console.log(response);
+            },
+        });
+
+
   }
 
   $("#enviaSol").click(function () {	
