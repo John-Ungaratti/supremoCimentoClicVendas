@@ -149,7 +149,7 @@
       success: function (response) {
         var json = JSON.parse(response);
         json.json.map(({ cpfMotorista, numAut, placaVeiculo, situacao, transportadora }) => {
-          if (situacao == "Cancelado") {
+          if (situacao == "Pendente") {
             linhaAut += `<tr id="linha">
                                 <th>${numeroAut}</th>
                                 <td>${situacao}</td>
