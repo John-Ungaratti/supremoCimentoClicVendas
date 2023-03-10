@@ -130,11 +130,11 @@
   
   window.addEventListener("load", function populaValorTabelaAutorizacao() {
 
-    console.log("commit 10");
+    console.log("commit 11");
 
     var parametros = {
-          	idCvtccnpj	: parent.dadosUserLogado().cId, 
-						numreg: 750, 
+          	idCvtccnpj	: "53", 
+						numreg: 751, 
 						pRotina: "lerAutorizacoes", 
 						pCodCli: parent.dadosUserLogado().rId,
 					 };
@@ -200,8 +200,8 @@
       console.log(json);
 
       var parametros = {
-          	idCvtccnpj	: parent.dadosUserLogado().cId, 
-						numreg: 750, 
+          	idCvtccnpj	: "53", 
+						numreg: 751, 
 						pRotina: "gravarAutorizacao", 
 						pCodCli: parent.dadosUserLogado().rId,
             pJson: json
