@@ -110,18 +110,6 @@
 
   var linhaAut = "";
 
-  function adicionaAut(){
-    var transportadora = document.getElementById('cpfCnpjTransportadora').value;
-    var motorista = document.getElementById('cpfMotorista').value;
-    var veiculo = document.getElementById('placaDoVeiculo').value;
-
-    var aut = {"id": 5, "numeroAut":"000000", "cliente":"02 - ABCDEF", "motorista": motorista, "veiculo": veiculo, "transportadora":transportadora}
-
-    json.push(aut);
-
-    document.location.reload();  
-  }
-
   $(document).ready(function () { 
         var $seuCampoCpf = $("#cpfMotorista");
         $seuCampoCpf.mask('000.000.000-00', {reverse: true});
@@ -134,32 +122,10 @@
     $('#cpfCnpjTransportadora').mask(mascara, options);
   }
 });
-
-
-
-  $("#abrirModalCadastrarSol").click(function () {
-    $("#modalCadastrarSol").modal('show');
-  });
-
-  $("#enviaSol").click(function () {
-    var formulario = document.getElementById("formSol");
-    if (!formulario.checkValidity()) {
-    }
-    else {
-      formulario.addEventListener('submit', function (e) {
-        e.preventDefault();
-      });
-      adicionaAut();
-      $("#modalCadastrarSol").modal('hide');
-    }
-  });
-
-  //Requisição para regra 751 para listar solicitações
-
   
   window.addEventListener("load", function populaValorTabelaAutorizacao() {
 
-    console.log("commit 4");
+    console.log("commit 5");
 
     var parametros = {
           	idCvtccnpj	: parent.dadosUserLogado().cId, 
