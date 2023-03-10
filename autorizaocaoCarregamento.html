@@ -14,7 +14,8 @@
     crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"
+    crossorigin="anonymous"></script>
   <div class="container-xxl">
     <button id="abrirModalCadastrarSol" type="button" class="btn btn-light"
       style="background-color: #edb926;color: white;">Cadastrar nova solicitação</button>
@@ -42,16 +43,18 @@
               </div>
               <div class="mb-3">
                 <label for="cpfCnpjTransportadora" class="form-label">CPF/CNPJ Transportadora</label>
-                <input type=text class="form-control" name="cpfCnpjTransportadora" id="cpfCnpjTransportadora" aria-describedby="cpfTransp" required>
+                <input type=text class="form-control" name="cpfCnpjTransportadora" id="cpfCnpjTransportadora"
+                  aria-describedby="cpfTransp" required>
                 <div id="cpfTransp" class="form-text">Informe cpf ou cnpj da transportadora</div>
               </div>
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" required>
                 <a href="https://www.google.com" target="_blank">Termo de aceite </a>
               </div>
-        </div>
+          </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="limpaForm()">Fechar</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+              onclick="limpaForm()">Fechar</button>
             <button id="enviaSol" type="submit" class="btn btn-primary">Enviar Autorização</button>
           </div>
           </form>
@@ -106,18 +109,18 @@
 
   var linhaAut = "";
 
-  $(document).ready(function () { 
-        var $seuCampoCpf = $("#cpfMotorista");
-        $seuCampoCpf.mask('000.000.000-00', {reverse: true});
-    });
+  $(document).ready(function () {
+    var $seuCampoCpf = $("#cpfMotorista");
+    $seuCampoCpf.mask('000.000.000-00', { reverse: true });
+  });
 
   $('#cpfCnpjTransportadora').mask('000.000.000-00', {
-  onKeyPress : function(cpfcnpj, e, field, options) {
-    const mascaras = ['000.000.000-000', '00.000.000/0000-00'];
-    const mascara = (cpfcnpj.length > 14) ? mascaras[1] : mascaras[0];
-    $('#cpfCnpjTransportadora').mask(mascara, options);
-  }
-});
+    onKeyPress: function (cpfcnpj, e, field, options) {
+      const mascaras = ['000.000.000-000', '00.000.000/0000-00'];
+      const mascara = (cpfcnpj.length > 14) ? mascaras[1] : mascaras[0];
+      $('#cpfCnpjTransportadora').mask(mascara, options);
+    }
+  });
 
 
   $("#abrirModalCadastrarSol").click(function () {
@@ -127,63 +130,46 @@
 
   //Requisição para regra 751 para listar solicitações
 
-  
+
   window.addEventListener("load", function populaValorTabelaAutorizacao() {
 
-    console.log("commit 13");
+    console.log("commit 14");
 
     var parametros = {
-          	idCvtccnpj	: "53", 
-						numreg: 751, 
-						pRotina: "lerAutorizacoes", 
-						pCodCli: parent.dadosUserLogado().rId,
-					 };
-						  
-			$.ajax({
-            url: parent.dadosUserLogado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
-            type: "POST",
-            data: JSON.stringify(parametros),
-            success: function (response) {
-              var json = JSON.parse(response);
-              console.log(json);
-            },
+      idCvtccnpj: "53",
+      numreg: 751,
+      pRotina: "lerAutorizacoes",
+      pCodCli: parent.dadosUserLogado().rId,
+    };
+
+    $.ajax({
+      url: parent.dadosUserLogado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
+      type: "POST",
+      data: JSON.stringify(parametros),
+      success: function (response) {
+        var json = JSON.parse(response);
+        json.json[0].map(({ cpfMotorista, numAut, placaVeiculo, situacao, transportadora }) => {
+          if (situacao == "Cancelado") {
+            linhaAut += `<tr id="linha${id}">
+                                <th>${numeroAut}</th>
+                                <td>${situacao}</td>
+                                <td>${cliente}</td>
+                                <td>${veiculo}</td>
+                                <td>${transportadora}</td>
+                                <td style="text-align: center;">
+                                </td>
+                              </tr>`;
+          }
+          
         });
+      },
+    });
 
-    // json.map(({ id, numeroAut, cliente, motorista, veiculo, transportadora, situacao }) => {
-
-    //   if(situacao == "Cancelado"){
-    //     linhaAut += `<tr id="linha${id}">
-    //                   <th>${numeroAut}</th>
-    //                   <td>${situacao}</td>
-    //                   <td>${cliente}</td>
-    //                   <td>${veiculo}</td>
-    //                   <td>${transportadora}</td>
-    //                   <td style="text-align: center;">
-    //                   </td>
-    //                 </tr>`;
-    //   }
-    //   else{
-    //     linhaAut += `<tr id="linha${id}">
-    //                   <th>${numeroAut}</th>
-    //                   <td>${situacao}</td>
-    //                   <td>${cliente}</td>
-    //                   <td>${veiculo}</td>
-    //                   <td>${transportadora}</td>
-    //                   <td style="text-align: center;">
-    //                   <span type=button onclick="editarAut(${numeroAut})"><i class="bi bi-pencil-square"></i></span>
-    //                   <span type=button onclick="abrirModalCancelar()"><i class="bi bi-x-lg"></i></span>
-    //                   </td>
-    //                 </tr>`;
-    //   }
-
-     
-    // });
-
-    // document.getElementById("tbodyAutorizacao").innerHTML = linhaAut;
+     document.getElementById("tbodyAutorizacao").innerHTML = linhaAut;
   }, false);
 
 
-  function abrirModalCancelar(){
+  function abrirModalCancelar() {
     $("#modalCancelarAut").modal('show');
   }
 
@@ -191,45 +177,45 @@
     document.getElementById('cpfMotorista').value = "";
     document.getElementById('cpfCnpjTransportadora').value = "";
     document.getElementById('placaDoVeiculo').value = "";
-}
+  }
 
-  function gravarAutorizacao (){
-      var json;
+  function gravarAutorizacao() {
+    var json;
 
-      json = {"cpfMotorista": document.getElementById('cpfMotorista').value, "cpfCnpjTransportadora": document.getElementById('cpfCnpjTransportadora').value, "placaDoVeiculo": document.getElementById('placaDoVeiculo').value};
+    json = { "cpfMotorista": document.getElementById('cpfMotorista').value, "cpfCnpjTransportadora": document.getElementById('cpfCnpjTransportadora').value, "placaDoVeiculo": document.getElementById('placaDoVeiculo').value };
 
-      console.log(json);
+    console.log(json);
 
-      var parametros = {
-          	idCvtccnpj	: "53", 
-						numreg: 751, 
-						pRotina: "gravarAutorizacao", 
-						pCodCli: parent.dadosUserLogado().rId,
-            pJson: json
-					 };
-						  
-			$.ajax({
-            url: parent.dadosUserLogado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
-            type: "POST",
-            data: JSON.stringify(parametros),
-            success: function (response) {
-              console.log(response);
-            },
-        });
+    var parametros = {
+      idCvtccnpj: "53",
+      numreg: 751,
+      pRotina: "gravarAutorizacao",
+      pCodCli: parent.dadosUserLogado().rId,
+      pJson: json
+    };
+
+    $.ajax({
+      url: parent.dadosUserLogado().cContextIntegracao + '/rest/Listas/executarRequisicaoExterna',
+      type: "POST",
+      data: JSON.stringify(parametros),
+      success: function (response) {
+        console.log(response);
+      },
+    });
 
 
   }
 
-  $("#enviaSol").click(function () {	
-		var formulario = document.getElementById("formSol");
-		if (!formulario.checkValidity()) {
-		}
-		else {
-			formulario.addEventListener('submit', function (e) {
-				e.preventDefault();
-			});
+  $("#enviaSol").click(function () {
+    var formulario = document.getElementById("formSol");
+    if (!formulario.checkValidity()) {
+    }
+    else {
+      formulario.addEventListener('submit', function (e) {
+        e.preventDefault();
+      });
       gravarAutorizacao();
-		}
-	});
+    }
+  });
 
 </script>
