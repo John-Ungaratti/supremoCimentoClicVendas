@@ -125,7 +125,7 @@
   });
 
 
-  //Requisio para regra 751 para listar solicitaes
+  //Requisição para regra 751 para listar solicitações
 
 
   window.addEventListener("load", function populaValorTabelaAutorizacao() {
@@ -195,9 +195,10 @@
       type: "POST",
       data: JSON.stringify(parametros),
       success: function (response) {
-        console.log(response);
       },
-      
+      complete: function (){
+        $("#modalCadastrarSol").modal('hide');
+      }
     });
 
 
