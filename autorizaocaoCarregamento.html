@@ -154,16 +154,15 @@
                                 <td>${placaVeiculo}</td>
                                 <td>${transportadora}</td>
                                 <td style="text-align: center;">
+                                  <span><i class="bi bi-check-square"></i></span>
                                 </td>
                               </tr>`;
           } 
           document.getElementById("tbodyAutorizacao").innerHTML = linhaAut;
-          console.log(linhaAut);
         });
       },
     });
   }, false);
-
 
   function abrirModalCancelar() {
     $("#modalCancelarAut").modal('show');
@@ -179,8 +178,6 @@
     var json;
 
     json = { "cpfMotorista": document.getElementById('cpfMotorista').value, "cpfCnpjTransportadora": document.getElementById('cpfCnpjTransportadora').value, "placaDoVeiculo": document.getElementById('placaDoVeiculo').value };
-
-    console.log(json);
 
     var parametros = {
       idCvtccnpj: "53",
