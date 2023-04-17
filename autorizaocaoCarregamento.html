@@ -145,7 +145,6 @@
   });
 
   function abrirModalAprovacao(){
-    console.log("Abrir modal");
     $("#modalAprovarAut").modal('show');
   }
 
@@ -159,7 +158,7 @@
 
     var parametros = {
       idCvtccnpj: "53",
-      numreg: 750,
+      numreg: 751,
       pRotina: "lerAutorizacoes",
       pCodCli: parent.dadosUserLogado().rId,
     };
@@ -180,7 +179,7 @@
                                 <td>${transportadora}</td>
                                 <td style="display: flex; justify-content: space-evenly;">
                                   <span id="autAprovButton" type="button" onclick="abrirModalAprovacao()" ><i style="color: green; font-size: 20px;" class="bi bi-check-square"></i></span>
-                                  <span id="autRepButton" type="button" ><i style="color: red; font-size: 20px" class="bi bi-x-square"></i></span>
+                                  <span id="autRepButton" type="button" onclick="abrirModalCancelar()"><i style="color: red; font-size: 20px" class="bi bi-x-square"></i></span>
                                 </td>
                               </tr>`;
           } 
@@ -192,6 +191,7 @@
 
   function abrirModalCancelar() {
     $("#modalCancelarAut").modal('show');
+
   }
 
   function limpaForm() {
