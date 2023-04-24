@@ -170,6 +170,7 @@
       success: function (response) {
         console.log(response);
         var json = JSON.parse(response);
+        console.log(json);
         json.json.map(({ cpfMotorista, numAut, placaVeiculo, situacao, transportadora }) => {
           if (situacao == "Pendente") {
             linhaAut += `<tr id="linha">
