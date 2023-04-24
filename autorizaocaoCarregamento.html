@@ -147,14 +147,11 @@
   function abrirModalAprovacao(){
     $("#modalAprovarAut").modal('show');
   }
-
   
-
-
-  //Requisiùùo para regra 751 para listar solicitaùùes
+//Requisiùùo para regra 751 para listar solicitaùùes
   window.addEventListener("load", function populaValorTabelaAutorizacao() {
 
-    console.log("commit 25");
+    console.log("commit 26");
 
     var parametros = {
       idCvtccnpj: "53",
@@ -218,6 +215,7 @@
       },
       complete: function (){
         $("#modalCadastrarSol").modal('hide');
+        location.reload();
       }
     });
 
