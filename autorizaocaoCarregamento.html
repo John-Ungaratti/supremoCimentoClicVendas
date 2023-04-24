@@ -154,7 +154,7 @@
   //Requisio para regra 751 para listar solicitaes
   window.addEventListener("load", function populaValorTabelaAutorizacao() {
 
-    console.log("commit 23");
+    console.log("commit 24");
 
     var parametros = {
       idCvtccnpj: "53",
@@ -172,18 +172,15 @@
         var json = JSON.parse(response);
         console.log(json);
         json.json.map(({ cpfMotorista, numAut, placaVeiculo, situacao, transportadora }) => {
-          if (situacao == "Pendente") {
+
             linhaAut += `<tr id="linha">
                                 <th>${numAut}</th>
                                 <td>${situacao}</td>
                                 <td>${placaVeiculo}</td>
                                 <td>${transportadora}</td>
-                                <td style="display: flex; justify-content: space-evenly;">
-                                  <span id="autAprovButton" type="button" onclick="abrirModalAprovacao()" ><i style="color: green; font-size: 20px;" class="bi bi-check-square"></i></span>
-                                  <span id="autRepButton" type="button" onclick="abrirModalCancelar()"><i style="color: red; font-size: 20px" class="bi bi-x-square"></i></span>
-                                </td>
+                                <td style="display: flex; justify-content: space-evenly;"></td>
                               </tr>`;
-          } 
+          
           document.getElementById("tbodyAutorizacao").innerHTML = linhaAut;
         });
       },
