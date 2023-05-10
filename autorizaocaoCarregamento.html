@@ -151,13 +151,13 @@
 //Requisiùùo para regra 751 para listar solicitaùùes
   window.addEventListener("load", function populaValorTabelaAutorizacao() {
 
-    console.log("commit 27");
+    console.log("commit 28");
 
     var parametros = {
       idCvtccnpj: "53",
       numreg: 751,
       pRotina: "lerAutorizacoes", 
-      pCodCli: parent.dadosUserLogado().rId, 
+      pCodCli: parent.dadosUserLogado().rCod, 
     };
 
     $.ajax({
@@ -203,7 +203,7 @@
       idCvtccnpj: "53",
       numreg: 751,
       pRotina: "gravarAutorizacao",
-      pCodCli: parent.dadosUserLogado().rId,
+      pCodCli: parent.dadosUserLogado().rCod,
       pJson: json
     };
 
