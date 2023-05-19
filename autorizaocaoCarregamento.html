@@ -234,7 +234,7 @@
         e.preventDefault();
       });
       console.log(validarCPF(document.getElementById('cpfMotorista').value), validarCPF(document.getElementById('cpfCnpjTransportadora').value), validarCNPJ(document.getElementById('cpfCnpjTransportadora').value));
-      if(validarCPF(document.getElementById('cpfMotorista').value) && (validarCPF(document.getElementById('cpfCnpjTransportadora').value) || validarCNPJ(ocument.getElementById('cpfCnpjTransportadora').value))){
+      if(validarCPF(document.getElementById('cpfMotorista').value) && (validarCPF(document.getElementById('cpfCnpjTransportadora').value) || validarCNPJ(document.getElementById('cpfCnpjTransportadora').value))){
         gravarAutorizacao();
       }
       else{
