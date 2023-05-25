@@ -180,11 +180,21 @@
           
             var cpf = transportadora;
 
+            if(cpf.length === 10){  
+              cpf = "0" + cpf.replace(/(\d{3})(\d{3})(\d{4})/, "$1.$2.$3");
+            }
+            else if(cpf.length === 11){ 
+              cpf = cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
+            }
+            else if(cpf.length > 11){
+              cpf = cpf.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, "$1.$2.$3/$4-$5");
+            }
+
 
             linhaAut += `<tr id="linha">
                                 <th>${situacao}</th>
                                 <td>${placaVeiculo}</td>
-                                <td>${transportadora}</td>
+                                <td>${cpf}</td>
                               </tr>`;
           
           document.getElementById("tbodyAutorizacao").innerHTML = linhaAut;
