@@ -157,7 +157,7 @@
 //Requisiùùo para regra 751 para listar solicitaùùes
   window.addEventListener("load", function populaValorTabelaAutorizacao() {
 
-    console.log("commit 41");
+    console.log("commit 42");
 
     var parametros = {
       idCvtccnpj: "53",
@@ -181,7 +181,7 @@
             var cpf = transportadora;
 
             if(cpf.length === 10){  
-              cpf = "0" + cpf.replace(/(\d{3})(\d{3})(\d{4})/, "$1.$2.$3");
+              cpf = "0" + cpf.replace(/(\d{3})(\d{3})(\d{4})/, "$2.$3-$4");
             }
             else if(cpf.length === 11){ 
               cpf = cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
