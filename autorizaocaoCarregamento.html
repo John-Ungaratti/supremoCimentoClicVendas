@@ -157,7 +157,7 @@
 //Requisio para regra 751 para listar solicitaes
   window.addEventListener("load", function populaValorTabelaAutorizacao() {
 
-    console.log("commit 43");
+    console.log("commit 44");
 
     var parametros = {
       idCvtccnpj: "53",
@@ -171,12 +171,9 @@
       type: "POST",
       data: JSON.stringify(parametros),
       success: function (response) {
-        console.log(response);
         var json = JSON.parse(response);
-        console.log(json);
         json.json.map(({ cpfMotorista, numAut, placaVeiculo, situacao, transportadora }) => {
 
-            console.log(transportadora);
           
             var cpf = transportadora;
 
@@ -249,7 +246,6 @@
       formulario.addEventListener('submit', function (e) {
         e.preventDefault();
       });
-      console.log(validarCPF(document.getElementById('cpfMotorista').value), validarCPF(document.getElementById('cpfCnpjTransportadora').value), validarCNPJ(document.getElementById('cpfCnpjTransportadora').value));
       if(validarCPF(document.getElementById('cpfMotorista').value) && (validarCPF(document.getElementById('cpfCnpjTransportadora').value) || validarCNPJ(document.getElementById('cpfCnpjTransportadora').value))){
         gravarAutorizacao();
       }
