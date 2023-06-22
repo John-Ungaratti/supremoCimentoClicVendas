@@ -70,7 +70,7 @@
           <th scope="col">SituaÁ„o</th>
           <th scope="col">Placa do VeÌculo</th>
           <th scope="col" colspan="2">CPF/CNPJ da transportadora</th>
-          <th scope="col" colspan="2">CPF Motorista</th>
+          <th scope="col">CPF Motorista</th>
         </tr>
       </thead>
       <tbody id="tbodyAutorizacao">
@@ -158,7 +158,7 @@
 //Requisiùùo para regra 751 para listar solicitaùùes
   window.addEventListener("load", function populaValorTabelaAutorizacao() {
 
-    console.log("commit 46");
+    console.log("commit 47");
 
     var parametros = {
       idCvtccnpj: "53",
@@ -193,7 +193,7 @@
             linhaAut += `<tr id="linha">
                                 <th>${situacao}</th>
                                 <td>${placaVeiculo}</td>
-                                <td>${cpf}</td>
+                                <td colspan="2">${cpf}</td>
                                 <td>${cpfMotorista}</td>
                               </tr>`;
           
