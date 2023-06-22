@@ -160,7 +160,7 @@
   //Requisiùùo para regra 751 para listar solicitaùùes
   window.addEventListener("load", function populaValorTabelaAutorizacao() {
 
-    console.log("commit 54");
+    console.log("commit 55");
 
     var parametros = {
       idCvtccnpj: "53",
@@ -216,7 +216,7 @@
   }
 
   function gravarAutorizacao() {
-
+    
     var json;
 
     json = { "cpfMotorista": document.getElementById('cpfMotorista').value, "cpfCnpjTransportadora": document.getElementById('cpfCnpjTransportadora').value, "placaDoVeiculo": document.getElementById('placaDoVeiculo').value };
@@ -247,37 +247,38 @@
     var formulario = document.getElementById("formSol");
     if (validarCamposObrigatorios()) {
       formulario.addEventListener('submit', function (e) {
-        e.preventDefault();
+          e.preventDefault();
       });
-      if (validarCPF(document.getElementById('cpfMotorista').value) || (validarCPF(document.getElementById('cpfCnpjTransportadora').value) || validarCNPJ(document.getElementById('cpfCnpjTransportadora')))) {
+      if(validarCPF(document.getElementById('cpfMotorista').value) || (validarCPF(document.getElementById('cpfCnpjTransportadora').value) || validarCNPJ(document.getElementById('cpfCnpjTransportadora')))){
         gravarAutorizacao();
       }
       else {
-        const errorToast = new bootstrap.Toast(document.getElementById('errorToast'));
-        errorToast.show();
+          const errorToast = new bootstrap.Toast(document.getElementById('errorToast'));
+          errorToast.show();
       }
+      
     }
-    else {
-      const errorToast = new bootstrap.Toast(document.getElementById('errorToast'));
-      errorToast.show();
-    }
-    // if (!formulario.checkValidity()) {
-    // }
     // else {
-    //   formulario.addEventListener('submit', function (e) {
-    //     e.preventDefault();
-    //   });
-
-    //   if (validarCPF(document.getElementById('cpfMotorista').value) && (validarCPF(document.getElementById('cpfCnpjTransportadora').value) || validarCNPJ(document.getElementById('cpfCnpjTransportadora').value))) {
-    //     gravarAutorizacao();
-    //   }
-
-    //   else {
     //     const errorToast = new bootstrap.Toast(document.getElementById('errorToast'));
     //     errorToast.show();
-    //   }
     // }
+      // if (!formulario.checkValidity()) {
+      // }
+      // else {
+      //   formulario.addEventListener('submit', function (e) {
+      //     e.preventDefault();
+      //   });
 
+      //   if (validarCPF(document.getElementById('cpfMotorista').value) && (validarCPF(document.getElementById('cpfCnpjTransportadora').value) || validarCNPJ(document.getElementById('cpfCnpjTransportadora').value))) {
+      //     gravarAutorizacao();
+      //   }
+
+      //   else {
+      //     const errorToast = new bootstrap.Toast(document.getElementById('errorToast'));
+      //     errorToast.show();
+      //   }
+      // }
+      
   });
 
   function validarCPF(cpf) {
@@ -372,7 +373,6 @@
     }
 
     console.log("rodou");
-
 
   }
 
