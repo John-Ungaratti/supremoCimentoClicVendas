@@ -158,7 +158,7 @@
 //Requisiùùo para regra 751 para listar solicitaùùes
   window.addEventListener("load", function populaValorTabelaAutorizacao() {
 
-    console.log("commit 50");
+    console.log("commit 51");
 
     var parametros = {
       idCvtccnpj: "53",
@@ -242,22 +242,24 @@
 
   $("#enviaSol").click(function () {
     var formulario = document.getElementById("formSol");
+    if (validarCamposObrigatorios()) {
     if (!formulario.checkValidity()) {
     }
     else {
       formulario.addEventListener('submit', function (e) {
         e.preventDefault();
       });
-      if (validarCamposObrigatorios()) {
+   
         if(validarCPF(document.getElementById('cpfMotorista').value) && (validarCPF(document.getElementById('cpfCnpjTransportadora').value) || validarCNPJ(document.getElementById('cpfCnpjTransportadora').value))){
           gravarAutorizacao();
         }
-      }
+
       else{
         const errorToast = new bootstrap.Toast(document.getElementById('errorToast'));
         errorToast.show();
       }
     }
+  }
   });
 
   function validarCPF(cpf) {
