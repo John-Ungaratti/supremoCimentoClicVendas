@@ -49,7 +49,8 @@
               </div>
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" required>
-                <a href="https://sistema.clicvenda.com.br/clicvenda/paginas/TERMO_DE_ACEITE_E_AUTORIZA%C3%87%C3%83O_DE_CARREGAMENTO.pdf" target="_blank">Termo de aceite </a>
+                <a href="https://sistema.clicvenda.com.br/clicvenda/paginas/TERMO_DE_ACEITE_E_AUTORIZA%C3%87%C3%83O_DE_CARREGAMENTO.pdf"
+                  target="_blank">Termo de aceite </a>
               </div>
           </div>
           <div class="modal-footer">
@@ -108,14 +109,15 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
-          <button type="button" class="btn btn-primary" onclick="" >Sim</button>
+          <button type="button" class="btn btn-primary" onclick="">Sim</button>
         </div>
       </div>
     </div>
   </div>
 
   <div class="toast-container position-absolute top-0 end-0 p-3">
-    <div id="errorToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="true" data-bs-delay="3000">
+    <div id="errorToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="true"
+      data-bs-delay="3000">
       <div class="toast-header">
         <strong class="me-auto">Erro ao cadastrar nova autorização</strong>
         <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Fechar"></button>
@@ -124,7 +126,7 @@
         O cpf/cnpj informado no campo acima não é válido, verifique e tente novamente.
       </div>
     </div>
-  </div>  
+  </div>
 
 </body>
 
@@ -151,11 +153,11 @@
     $("#modalCadastrarSol").modal('show');
   });
 
-  function abrirModalAprovacao(){
+  function abrirModalAprovacao() {
     $("#modalAprovarAut").modal('show');
   }
-  
-//Requisio para regra 751 para listar solicitaes
+
+  //Requisio para regra 751 para listar solicitaes
   window.addEventListener("load", function populaValorTabelaAutorizacao() {
 
     console.log("commit 51");
@@ -163,8 +165,8 @@
     var parametros = {
       idCvtccnpj: "53",
       numreg: 751,
-      pRotina: "lerAutorizacoes", 
-      pCodCli: parent.dadosUserLogado().rCod, 
+      pRotina: "lerAutorizacoes",
+      pCodCli: parent.dadosUserLogado().rCod,
     };
 
     $.ajax({
@@ -175,28 +177,28 @@
         var json = JSON.parse(response);
         json.json.map(({ cpfMotorista, numAut, placaVeiculo, situacao, transportadora }) => {
 
-          
-            var cpf = transportadora;
 
-            if(cpf.length === 10){  
-              cpf = "0" + cpf;
-              cpf = cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
-            }
-            else if(cpf.length === 11){ 
-              cpf = cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
-            }
-            else if(cpf.length > 11){
-              cpf = cpf.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, "$1.$2.$3/$4-$5");
-            }
+          var cpf = transportadora;
+
+          if (cpf.length === 10) {
+            cpf = "0" + cpf;
+            cpf = cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
+          }
+          else if (cpf.length === 11) {
+            cpf = cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
+          }
+          else if (cpf.length > 11) {
+            cpf = cpf.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, "$1.$2.$3/$4-$5");
+          }
 
 
-            linhaAut += `<tr id="linha">
+          linhaAut += `<tr id="linha">
                                 <th>${situacao}</th>
                                 <td>${placaVeiculo}</td>
                                 <td colspan="2">${cpf}</td>
                                 <td>${cpfMotorista}</td>
                               </tr>`;
-          
+
           document.getElementById("tbodyAutorizacao").innerHTML = linhaAut;
         });
       },
@@ -232,7 +234,7 @@
       data: JSON.stringify(parametros),
       success: function (response) {
       },
-      complete: function (){
+      complete: function () {
         $("#modalCadastrarSol").modal('hide');
         location.reload();
       }
@@ -242,115 +244,114 @@
 
   $("#enviaSol").click(function () {
     var formulario = document.getElementById("formSol");
-    if (validarCamposObrigatorios()) {
-    if (!formulario.checkValidity()) {
-    }
-    else {
-      formulario.addEventListener('submit', function (e) {
-        e.preventDefault();
-      });
-   
-        if(validarCPF(document.getElementById('cpfMotorista').value) && (validarCPF(document.getElementById('cpfCnpjTransportadora').value) || validarCNPJ(document.getElementById('cpfCnpjTransportadora').value))){
+      if (!formulario.checkValidity()) {
+      }
+      else {
+        formulario.addEventListener('submit', function (e) {
+          e.preventDefault();
+          validarCamposObrigatorios();
+        });
+
+        if (validarCPF(document.getElementById('cpfMotorista').value) && (validarCPF(document.getElementById('cpfCnpjTransportadora').value) || validarCNPJ(document.getElementById('cpfCnpjTransportadora').value))) {
           gravarAutorizacao();
         }
 
-      else{
-        const errorToast = new bootstrap.Toast(document.getElementById('errorToast'));
-        errorToast.show();
+        else {
+          const errorToast = new bootstrap.Toast(document.getElementById('errorToast'));
+          errorToast.show();
+        }
       }
-    }
-  }
   });
 
   function validarCPF(cpf) {
-  cpf = cpf.replace(/[^\d]+/g, ''); 
+    cpf = cpf.replace(/[^\d]+/g, '');
 
-  if (cpf.length !== 11) {
-    return false;
-  }
+    if (cpf.length !== 11) {
+      return false;
+    }
 
-  if (/^(\d)\1+$/.test(cpf)) {
-    return false;
-  }
+    if (/^(\d)\1+$/.test(cpf)) {
+      return false;
+    }
 
-  let soma = 0;
-  for (let i = 0; i < 9; i++) {
-    soma += parseInt(cpf.charAt(i)) * (10 - i);
-  }
-  let resto = 11 - (soma % 11);
-  let digitoVerificador = resto === 10 || resto === 11 ? 0 : resto;
+    let soma = 0;
+    for (let i = 0; i < 9; i++) {
+      soma += parseInt(cpf.charAt(i)) * (10 - i);
+    }
+    let resto = 11 - (soma % 11);
+    let digitoVerificador = resto === 10 || resto === 11 ? 0 : resto;
 
-  if (digitoVerificador !== parseInt(cpf.charAt(9))) {
-    return false;
-  }
+    if (digitoVerificador !== parseInt(cpf.charAt(9))) {
+      return false;
+    }
 
-  soma = 0;
-  for (let i = 0; i < 10; i++) {
-    soma += parseInt(cpf.charAt(i)) * (11 - i);
-  }
-  resto = 11 - (soma % 11);
-  digitoVerificador = resto === 10 || resto === 11 ? 0 : resto;
+    soma = 0;
+    for (let i = 0; i < 10; i++) {
+      soma += parseInt(cpf.charAt(i)) * (11 - i);
+    }
+    resto = 11 - (soma % 11);
+    digitoVerificador = resto === 10 || resto === 11 ? 0 : resto;
 
-  if (digitoVerificador !== parseInt(cpf.charAt(10))) {
-    return false;
+    if (digitoVerificador !== parseInt(cpf.charAt(10))) {
+      return false;
+    }
+    return true;
   }
-  return true;
-}
 
   function validarCNPJ(cnpj) {
-  cnpj = cnpj.replace(/[^\d]+/g, '');
+    cnpj = cnpj.replace(/[^\d]+/g, '');
 
-  if (cnpj.length !== 14) {
-    return false;
+    if (cnpj.length !== 14) {
+      return false;
+    }
+
+    if (/^(\d)\1+$/.test(cnpj)) {
+      return false;
+    }
+
+    let soma = 0;
+    let peso = 5;
+    for (let i = 0; i < 12; i++) {
+      soma += parseInt(cnpj.charAt(i)) * peso;
+      peso = peso === 2 ? 9 : peso - 1;
+    }
+    let digitoVerificador = soma % 11 < 2 ? 0 : 11 - (soma % 11);
+
+    if (digitoVerificador !== parseInt(cnpj.charAt(12))) {
+      return false;
+    }
+
+    soma = 0;
+    peso = 6;
+    for (let i = 0; i < 13; i++) {
+      soma += parseInt(cnpj.charAt(i)) * peso;
+      peso = peso === 2 ? 9 : peso - 1;
+    }
+    digitoVerificador = soma % 11 < 2 ? 0 : 11 - (soma % 11);
+
+    if (digitoVerificador !== parseInt(cnpj.charAt(13))) {
+      return false;
+    }
+
+    return true;
   }
 
-  if (/^(\d)\1+$/.test(cnpj)) {
-    return false;
-  }
-
-  let soma = 0;
-  let peso = 5;
-  for (let i = 0; i < 12; i++) {
-    soma += parseInt(cnpj.charAt(i)) * peso;
-    peso = peso === 2 ? 9 : peso - 1;
-  }
-  let digitoVerificador = soma % 11 < 2 ? 0 : 11 - (soma % 11);
-
-  if (digitoVerificador !== parseInt(cnpj.charAt(12))) {
-    return false;
-  }
-
-  soma = 0;
-  peso = 6;
-  for (let i = 0; i < 13; i++) {
-    soma += parseInt(cnpj.charAt(i)) * peso;
-    peso = peso === 2 ? 9 : peso - 1;
-  }
-  digitoVerificador = soma % 11 < 2 ? 0 : 11 - (soma % 11);
-
-  if (digitoVerificador !== parseInt(cnpj.charAt(13))) {
-    return false;
-  }
-
-  return true;
-}
-
-  function validarCamposObrigatorios(){
+  function validarCamposObrigatorios() {
     let cpf = document.getElementById("cpfMotorista");
     let veiculo = document.getElementById("placaDoVeiculo");
     let transportadora = document.getElementById("cpfCnpjTransportadora");
 
-    if(cpf.value){
-        veiculo.required = false;
-        transportadora.required = false;
+    if (cpf.value) {
+      veiculo.required = false;
+      transportadora.required = false;
     }
-    else if(veiculo.value){
-        cpf.required = false;
-        transportadora.required = false;
+    else if (veiculo.value) {
+      cpf.required = false;
+      transportadora.required = false;
     }
-    else if(transportadora.value){
-        veiculo.required = false;
-        cpf.required = false;
+    else if (transportadora.value) {
+      veiculo.required = false;
+      cpf.required = false;
     }
 
     console.log("rodou");
