@@ -158,7 +158,7 @@
 //Requisiùùo para regra 751 para listar solicitaùùes
   window.addEventListener("load", function populaValorTabelaAutorizacao() {
 
-    console.log("commit 47");
+    console.log("commit 48");
 
     var parametros = {
       idCvtccnpj: "53",
@@ -214,9 +214,13 @@
   }
 
   function gravarAutorizacao() {
+
+    validarCamposObrigatorios();
+    
     var json;
 
     json = { "cpfMotorista": document.getElementById('cpfMotorista').value, "cpfCnpjTransportadora": document.getElementById('cpfCnpjTransportadora').value, "placaDoVeiculo": document.getElementById('placaDoVeiculo').value };
+
 
     var parametros = {
       idCvtccnpj: "53",
@@ -330,5 +334,26 @@
 
   return true;
 }
+
+  function validarCamposObrigatorios(){
+    let cpf = document.getElementById("cpfMotorista").value;
+    let veiculo = document.getElementById("placaDoVeiculo").value;
+    let transportadora = document.getElementById("cpfCnpjTransportadora").value;
+
+    if(cpf){
+        veiculo.required = false;
+        transportadora.required = false;
+    }
+    else if(veiculo){
+        cpf.required = false;
+        transportadora.required = false;
+    }
+    else if(transportadora){
+        veiculo.required = false;
+        cpf.required = false;
+    }
+
+
+  }
 
 </script>
