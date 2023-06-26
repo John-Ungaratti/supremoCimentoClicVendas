@@ -158,7 +158,7 @@
 //Requisio para regra 751 para listar solicitaes
   window.addEventListener("load", function populaValorTabelaAutorizacao() {
 
-    console.log("commit 66");
+    console.log("commit 67");
 
     var parametros = {
       idCvtccnpj: "53",
@@ -175,6 +175,10 @@
 
         var jsonConv = response;
 
+        console.log(jsonConv);
+        
+        jsonConv = JSON.parse(jsonConv);
+        
         console.log(jsonConv);
 
         jsonConv.json.map(({ cpfMotorista, numAut, placaVeiculo, situacao, transportadora }) => {
